@@ -9,7 +9,11 @@ import Foundation
 
 struct ConfigKeys {
     static private let metersKey = "notificationMeters"
+    static private let flickrApiKeyKey = "flickrApiKey"
+
     static private let configPlistFilePath =  Bundle.main.path(forResource: "config", ofType: "plist")
     static private let configDictionary = NSDictionary(contentsOfFile: ConfigKeys.configPlistFilePath!) as? [String: Any]
     static let notificationMeters = ConfigKeys.configDictionary![ConfigKeys.metersKey] as? Double
+    static let flickrApiKey = ConfigKeys.configDictionary![ConfigKeys.flickrApiKeyKey] as? String
+
 }

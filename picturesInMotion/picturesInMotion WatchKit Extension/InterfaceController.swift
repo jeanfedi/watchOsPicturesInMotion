@@ -98,6 +98,9 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
             NSLog("Distance: \(lastLocation!.distance(from: userLocation))")
         }
         lastLocation = userLocation
+        Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImage in
+            NSLog("PIC: \(flickrImage.imageUrl)")
+        })
     }
     
     

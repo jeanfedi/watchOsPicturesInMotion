@@ -29,6 +29,10 @@
 		F933127C2094D81300725BBB /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = F93312792094D81300725BBB /* config.plist */; };
 		F933127E2094D84C00725BBB /* ConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933127D2094D84C00725BBB /* ConfigKeys.swift */; };
 		F933127F2094D84C00725BBB /* ConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933127D2094D84C00725BBB /* ConfigKeys.swift */; };
+		F93312812094E19900725BBB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312802094E19900725BBB /* Networking.swift */; };
+		F93312822094E19900725BBB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312802094E19900725BBB /* Networking.swift */; };
+		F93312862094E1FF00725BBB /* FlickrImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312852094E1FF00725BBB /* FlickrImage.swift */; };
+		F93312872094E1FF00725BBB /* FlickrImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312852094E1FF00725BBB /* FlickrImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +98,8 @@
 		F93312732094A0F000725BBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizeble.strings; sourceTree = "<group>"; };
 		F93312792094D81300725BBB /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		F933127D2094D84C00725BBB /* ConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigKeys.swift; sourceTree = "<group>"; };
+		F93312802094E19900725BBB /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		F93312852094E1FF00725BBB /* FlickrImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,8 @@
 		F9331255209491DA00725BBB /* picturesInMotion WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F93312842094E1E700725BBB /* networking */,
+				F93312832094E1D000725BBB /* model */,
 				F933126A20949E4900725BBB /* Resources */,
 				F9331256209491DA00725BBB /* InterfaceController.swift */,
 				F9331258209491DA00725BBB /* ExtensionDelegate.swift */,
@@ -186,6 +194,22 @@
 				F933127D2094D84C00725BBB /* ConfigKeys.swift */,
 			);
 			path = config;
+			sourceTree = "<group>";
+		};
+		F93312832094E1D000725BBB /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F93312852094E1FF00725BBB /* FlickrImage.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F93312842094E1E700725BBB /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				F93312802094E19900725BBB /* Networking.swift */,
+			);
+			path = networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +351,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9331236209491D800725BBB /* ViewController.swift in Sources */,
+				F93312812094E19900725BBB /* Networking.swift in Sources */,
+				F93312862094E1FF00725BBB /* FlickrImage.swift in Sources */,
 				F933127E2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127020949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331234209491D800725BBB /* AppDelegate.swift in Sources */,
@@ -338,6 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9331259209491DA00725BBB /* ExtensionDelegate.swift in Sources */,
+				F93312822094E19900725BBB /* Networking.swift in Sources */,
+				F93312872094E1FF00725BBB /* FlickrImage.swift in Sources */,
 				F933127F2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127120949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331257209491DA00725BBB /* InterfaceController.swift in Sources */,
