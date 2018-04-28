@@ -1,0 +1,12 @@
+/* 
+  Localizable
+  picturesInMotion
+
+  Created by Phoedo on 28/04/18.
+  Copyright © 2018 Phoedo. All rights reserved.
+*/
+"Start" = "Start";
+"Stop" = "Stop";
+"Disconnected" = "Disconnected";
+"LocationDisabled" = "Location services disabled";
+

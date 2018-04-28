@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>flickrAvailableRadius</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+		<integer>5</integer>
+		<integer>10</integer>
+		<integer>20</integer>
+	</array>
+	<key>flickrApiKey</key>
+	<string>30d425bd18be7aa382f25d1ad17ce750</string>
+	<key>notificationMeters</key>
+	<integer>100</integer>
+	<key>waitIntervalBetweenRequests</key>
+	<integer>20</integer>
+	<key>maxSessionLength</key>
+	<integer>7200</integer>
+</dict>
+</plist>
