@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--PicsInMotion-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="picturesInMotion_WatchKit_App" customModuleProvider="target">
+                <controller title="PicsInMotion" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="picturesInMotion_WatchKit_App" customModuleProvider="target">
                     <items>
                         <button width="1" height="0.20000000000000001" alignment="left" title="Button" id="glA-Do-z8t">
                             <connections>
@@ -21,12 +21,20 @@
                         </button>
                         <table alignment="left" id="ZRl-MW-ep7">
                             <items>
-                                <tableRow identifier="FlickImageRow" id="fVi-ko-p9l">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="Z2j-g8-QjD">
+                                <tableRow identifier="FlickrImageRow" id="fVi-ko-p9l" customClass="FlickrRowController" customModule="picturesInMotion_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="80" alignment="left" contentMode="scaleAspectFill" radius="10" id="Z2j-g8-QjD">
                                         <items>
-                                            <imageView height="70" alignment="left" id="cQp-v0-xHv"/>
+                                            <imageView width="135" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" id="cQp-v0-xHv"/>
                                         </items>
+                                        <variation key="default">
+                                            <mask key="items">
+                                                <exclude reference="cQp-v0-xHv"/>
+                                            </mask>
+                                        </variation>
                                     </group>
+                                    <connections>
+                                        <outlet property="image" destination="Z2j-g8-QjD" id="77m-NR-2Zw"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
@@ -40,4 +48,5 @@
             <point key="canvasLocation" x="34" y="31"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.21176470589999999" green="0.75294117650000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -54,6 +54,9 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     }
     
     func startStandardUpdates(){
+        if (picturesTable.numberOfRows > 0){
+            picturesTable.removeRows(at: IndexSet(0...picturesTable.numberOfRows-1) )
+        }
         self.uploadedImages.removeAllObjects()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             locationManager.startUpdatingLocation()
@@ -97,25 +100,31 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
+        var addNewImage = true
         if (lastLocation != nil){
+            if (lastLocation!.distance(from: userLocation) == 0){
+                addNewImage = false;
+            }
             NSLog("Distance: \(lastLocation!.distance(from: userLocation))")
         }
         lastLocation = userLocation
-        Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
+        if (addNewImage){
+            Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
             var loaded = false
-            for flickrImage in flickrImages {
-                if (!self.uploadedImages.contains(flickrImage.id)){
-                    self.uploadedImages.add(flickrImage.id)
-                    loaded = true
-                    break
+                for flickrImage in flickrImages {
+                    if (!self.uploadedImages.contains(flickrImage.id)){
+                        self.addNewRecord(flickrImage: flickrImage)
+                        loaded = true
+                        break
+                    }
                 }
-            }
-            if (!loaded && flickrImages.count > 0){
-                self.uploadedImages.removeAllObjects()
-            }
-        })
+                if (!loaded && flickrImages.count > 0){
+                    self.uploadedImages.removeAllObjects()
+                    self.addNewRecord(flickrImage: flickrImages[0])
+                }
+            })
+        }
     }
-    
     
     // MARK: buttonStyles
     
@@ -141,6 +150,13 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         startButton.setTitle(NSLocalizedString(StringKeys.locationDisabledMessage, comment: ""))
         startButton.setBackgroundColor(UIColor.gray)
         startButton.setEnabled(false)
+    }
+    
+    func addNewRecord(flickrImage:FlickrImage){
+        uploadedImages.add(flickrImage.id)
+        self.picturesTable.insertRows(at:[0], withRowType: "FlickrImageRow")
+        guard let controller = self.picturesTable.rowController(at: 0) as? FlickrRowController else {return}
+        controller.flickrImage = flickrImage
     }
     
     

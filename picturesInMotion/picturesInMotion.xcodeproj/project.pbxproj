@@ -33,6 +33,9 @@
 		F93312822094E19900725BBB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312802094E19900725BBB /* Networking.swift */; };
 		F93312862094E1FF00725BBB /* FlickrImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312852094E1FF00725BBB /* FlickrImage.swift */; };
 		F93312872094E1FF00725BBB /* FlickrImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93312852094E1FF00725BBB /* FlickrImage.swift */; };
+		F933128A209508F300725BBB /* WKInterfaceImage+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9331289209508F300725BBB /* WKInterfaceImage+Loading.swift */; };
+		F933128B209508F300725BBB /* WKInterfaceImage+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9331289209508F300725BBB /* WKInterfaceImage+Loading.swift */; };
+		F933128E2095094700725BBB /* FlickrRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933128C2095094700725BBB /* FlickrRowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,8 @@
 		F933127D2094D84C00725BBB /* ConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigKeys.swift; sourceTree = "<group>"; };
 		F93312802094E19900725BBB /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F93312852094E1FF00725BBB /* FlickrImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImage.swift; sourceTree = "<group>"; };
+		F9331289209508F300725BBB /* WKInterfaceImage+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKInterfaceImage+Loading.swift"; sourceTree = "<group>"; };
+		F933128C2095094700725BBB /* FlickrRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,11 +171,13 @@
 		F9331255209491DA00725BBB /* picturesInMotion WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F9331288209508C200725BBB /* extensions */,
 				F93312842094E1E700725BBB /* networking */,
 				F93312832094E1D000725BBB /* model */,
 				F933126A20949E4900725BBB /* Resources */,
 				F9331256209491DA00725BBB /* InterfaceController.swift */,
 				F9331258209491DA00725BBB /* ExtensionDelegate.swift */,
+				F933128C2095094700725BBB /* FlickrRowController.swift */,
 				F933125A209491DB00725BBB /* Assets.xcassets */,
 				F933125C209491DB00725BBB /* Info.plist */,
 			);
@@ -210,6 +217,14 @@
 				F93312802094E19900725BBB /* Networking.swift */,
 			);
 			path = networking;
+			sourceTree = "<group>";
+		};
+		F9331288209508C200725BBB /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F9331289209508F300725BBB /* WKInterfaceImage+Loading.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +368,7 @@
 				F9331236209491D800725BBB /* ViewController.swift in Sources */,
 				F93312812094E19900725BBB /* Networking.swift in Sources */,
 				F93312862094E1FF00725BBB /* FlickrImage.swift in Sources */,
+				F933128A209508F300725BBB /* WKInterfaceImage+Loading.swift in Sources */,
 				F933127E2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127020949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331234209491D800725BBB /* AppDelegate.swift in Sources */,
@@ -366,6 +382,8 @@
 				F9331259209491DA00725BBB /* ExtensionDelegate.swift in Sources */,
 				F93312822094E19900725BBB /* Networking.swift in Sources */,
 				F93312872094E1FF00725BBB /* FlickrImage.swift in Sources */,
+				F933128E2095094700725BBB /* FlickrRowController.swift in Sources */,
+				F933128B209508F300725BBB /* WKInterfaceImage+Loading.swift in Sources */,
 				F933127F2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127120949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331257209491DA00725BBB /* InterfaceController.swift in Sources */,
