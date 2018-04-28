@@ -19,7 +19,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     let locationManager: CLLocationManager = CLLocationManager()
     var lastLocation : CLLocation? = nil
     let uploadedImages = NSMutableArray()
-
+    var canUpdateList = true
 
     
     override func awake(withContext context: Any?) {
@@ -32,7 +32,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = ConfigKeys.notificationMeters! // In meters.
         locationManager.requestWhenInUseAuthorization()
-        
+
     }
     
     override func willActivate() {
@@ -109,20 +109,29 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         }
         lastLocation = userLocation
         if (addNewImage){
-            Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
-            var loaded = false
-                for flickrImage in flickrImages {
-                    if (!self.uploadedImages.contains(flickrImage.id)){
-                        self.addNewRecord(flickrImage: flickrImage)
-                        loaded = true
-                        break
+            if (canUpdateList){
+                canUpdateList = false
+                NSLog("TIMERSET")
+
+                Timer.scheduledTimer(withTimeInterval: TimeInterval(ConfigKeys.intervelBetweenRequests!), repeats: false, block: {_ in
+                    self.canUpdateList = true
+                    NSLog("TIMERRESET")
+                })
+                Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
+                var loaded = false
+                    for flickrImage in flickrImages {
+                        if (!self.uploadedImages.contains(flickrImage.id)){
+                            self.addNewRecord(flickrImage: flickrImage)
+                            loaded = true
+                            break
+                        }
                     }
-                }
-                if (!loaded && flickrImages.count > 0){
-                    self.uploadedImages.removeAllObjects()
-                    self.addNewRecord(flickrImage: flickrImages[0])
-                }
-            })
+                    if (!loaded && flickrImages.count > 0){
+                        self.uploadedImages.removeAllObjects()
+                        self.addNewRecord(flickrImage: flickrImages[0])
+                    }
+                })
+            }
         }
     }
     
@@ -157,6 +166,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         self.picturesTable.insertRows(at:[0], withRowType: "FlickrImageRow")
         guard let controller = self.picturesTable.rowController(at: 0) as? FlickrRowController else {return}
         controller.flickrImage = flickrImage
+        
     }
     
     

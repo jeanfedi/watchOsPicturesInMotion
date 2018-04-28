@@ -14,5 +14,7 @@
 	<string>30d425bd18be7aa382f25d1ad17ce750</string>
 	<key>notificationMeters</key>
 	<integer>100</integer>
+	<key>waitIntervalBetweenRequests</key>
+	<integer>20</integer>
 </dict>
 </plist>
