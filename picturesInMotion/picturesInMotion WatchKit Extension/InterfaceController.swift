@@ -20,6 +20,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     var lastLocation : CLLocation? = nil
     let uploadedImages = NSMutableArray()
     var canUpdateList = true
+    var maximumLengthTimer : Timer? = nil
 
     
     override func awake(withContext context: Any?) {
@@ -43,6 +44,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        picturesTable.scrollToRow(at: 0)
     }
     
     @IBAction func toggleStartStopButton(v: WKInterfaceButton){
@@ -57,6 +59,10 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         if (picturesTable.numberOfRows > 0){
             picturesTable.removeRows(at: IndexSet(0...picturesTable.numberOfRows-1) )
         }
+        maximumLengthTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(ConfigKeys.maxSessionInterval!), repeats: false, block: {_ in
+            self.stopStandardUpdates()
+        })
+
         self.uploadedImages.removeAllObjects()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             locationManager.startUpdatingLocation()
@@ -73,6 +79,8 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     func stopStandardUpdates(){
         acquiring = false
         setStartButton()
+        locationManager.stopUpdatingLocation()
+        maximumLengthTimer?.invalidate()
     }
     
     // MARK: locationManagerDelegate
@@ -94,7 +102,6 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
                 stopStandardUpdates()
             }
         }
-        NSLog("Authorization \(status.rawValue)")
     }
     
     func locationManager(_ manager: CLLocationManager,didUpdateLocations locations: [CLLocation]) {
@@ -105,17 +112,13 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
             if (lastLocation!.distance(from: userLocation) == 0){
                 addNewImage = false;
             }
-            NSLog("Distance: \(lastLocation!.distance(from: userLocation))")
         }
         lastLocation = userLocation
         if (addNewImage){
             if (canUpdateList){
                 canUpdateList = false
-                NSLog("TIMERSET")
-
                 Timer.scheduledTimer(withTimeInterval: TimeInterval(ConfigKeys.intervelBetweenRequests!), repeats: false, block: {_ in
                     self.canUpdateList = true
-                    NSLog("TIMERRESET")
                 })
                 Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
                 var loaded = false

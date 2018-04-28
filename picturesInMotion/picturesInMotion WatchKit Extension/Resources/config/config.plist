@@ -16,5 +16,7 @@
 	<integer>100</integer>
 	<key>waitIntervalBetweenRequests</key>
 	<integer>20</integer>
+	<key>maxSessionLength</key>
+	<integer>7200</integer>
 </dict>
 </plist>

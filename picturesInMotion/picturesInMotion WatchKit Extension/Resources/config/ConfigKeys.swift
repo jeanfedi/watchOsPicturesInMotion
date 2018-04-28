@@ -12,6 +12,7 @@ struct ConfigKeys {
     static private let flickrApiKeyKey = "flickrApiKey"
     static private let flickrRadiusKey = "flickrAvailableRadius"
     static private let intervalBetweenRequestsKey = "waitIntervalBetweenRequests"
+    static private let maxSessionIntervalKey = "maxSessionLength"
 
     static private let configPlistFilePath =  Bundle.main.path(forResource: "config", ofType: "plist")
     static private let configDictionary = NSDictionary(contentsOfFile: ConfigKeys.configPlistFilePath!) as? [String: Any]
@@ -19,6 +20,7 @@ struct ConfigKeys {
     static let flickrApiKey = ConfigKeys.configDictionary![ConfigKeys.flickrApiKeyKey] as? String
     static let flickrAvailableRadius = ConfigKeys.configDictionary![ConfigKeys.flickrRadiusKey] as? [Double]
     static let intervelBetweenRequests = ConfigKeys.configDictionary![ConfigKeys.intervalBetweenRequestsKey] as? Int
+    static let maxSessionInterval = ConfigKeys.configDictionary![ConfigKeys.maxSessionIntervalKey] as? Int
 
 
 }
