@@ -7,3 +7,6 @@
 */
 "Start" = "Start";
 "Stop" = "Stop";
+"Disconnected" = "Disconnected";
+"LocationDisabled" = "Location services disabled";
+

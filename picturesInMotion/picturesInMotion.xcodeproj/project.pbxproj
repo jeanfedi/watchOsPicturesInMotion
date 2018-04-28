@@ -24,6 +24,11 @@
 		F93312742094A0F000725BBB /* Localizeble.strings in Resources */ = {isa = PBXBuildFile; fileRef = F93312722094A0F000725BBB /* Localizeble.strings */; };
 		F93312752094A0F000725BBB /* Localizeble.strings in Resources */ = {isa = PBXBuildFile; fileRef = F93312722094A0F000725BBB /* Localizeble.strings */; };
 		F93312762094A0F000725BBB /* Localizeble.strings in Resources */ = {isa = PBXBuildFile; fileRef = F93312722094A0F000725BBB /* Localizeble.strings */; };
+		F933127A2094D81300725BBB /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = F93312792094D81300725BBB /* config.plist */; };
+		F933127B2094D81300725BBB /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = F93312792094D81300725BBB /* config.plist */; };
+		F933127C2094D81300725BBB /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = F93312792094D81300725BBB /* config.plist */; };
+		F933127E2094D84C00725BBB /* ConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933127D2094D84C00725BBB /* ConfigKeys.swift */; };
+		F933127F2094D84C00725BBB /* ConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933127D2094D84C00725BBB /* ConfigKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +92,8 @@
 		F933125C209491DB00725BBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F933126F20949F0500725BBB /* StringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringKeys.swift; sourceTree = "<group>"; };
 		F93312732094A0F000725BBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizeble.strings; sourceTree = "<group>"; };
-		F93312772094A12300725BBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizeble.strings; sourceTree = "<group>"; };
+		F93312792094D81300725BBB /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		F933127D2094D84C00725BBB /* ConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +172,20 @@
 		F933126A20949E4900725BBB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F93312782094D7F000725BBB /* config */,
 				F93312722094A0F000725BBB /* Localizeble.strings */,
 				F933126F20949F0500725BBB /* StringKeys.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F93312782094D7F000725BBB /* config */ = {
+			isa = PBXGroup;
+			children = (
+				F93312792094D81300725BBB /* config.plist */,
+				F933127D2094D84C00725BBB /* ConfigKeys.swift */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +294,7 @@
 				F93312742094A0F000725BBB /* Localizeble.strings in Resources */,
 				F933123B209491D900725BBB /* Assets.xcassets in Resources */,
 				F9331239209491D800725BBB /* Main.storyboard in Resources */,
+				F933127A2094D81300725BBB /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F933127B2094D81300725BBB /* config.plist in Resources */,
 				F933124B209491DA00725BBB /* Assets.xcassets in Resources */,
 				F9331249209491D900725BBB /* Interface.storyboard in Resources */,
 				F93312752094A0F000725BBB /* Localizeble.strings in Resources */,
@@ -297,6 +315,7 @@
 			files = (
 				F933125B209491DB00725BBB /* Assets.xcassets in Resources */,
 				F93312762094A0F000725BBB /* Localizeble.strings in Resources */,
+				F933127C2094D81300725BBB /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9331236209491D800725BBB /* ViewController.swift in Sources */,
+				F933127E2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127020949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331234209491D800725BBB /* AppDelegate.swift in Sources */,
 			);
@@ -318,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9331259209491DA00725BBB /* ExtensionDelegate.swift in Sources */,
+				F933127F2094D84C00725BBB /* ConfigKeys.swift in Sources */,
 				F933127120949F0500725BBB /* StringKeys.swift in Sources */,
 				F9331257209491DA00725BBB /* InterfaceController.swift in Sources */,
 			);
@@ -367,7 +388,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F93312732094A0F000725BBB /* Base */,
-				F93312772094A12300725BBB /* en */,
 			);
 			name = Localizeble.strings;
 			sourceTree = "<group>";

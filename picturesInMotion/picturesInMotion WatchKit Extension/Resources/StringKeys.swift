@@ -9,4 +9,7 @@
 struct StringKeys {
     static let startMessage = "Start"
     static let stopMessage = "Stop"
+    static let disconnectedMessage = "Disconnected"
+    static let locationDisabledMessage = "Location services disabled"
+
 }
