@@ -18,6 +18,8 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     var acquiring = false
     let locationManager: CLLocationManager = CLLocationManager()
     var lastLocation : CLLocation? = nil
+    let uploadedImages = NSMutableArray()
+
 
     
     override func awake(withContext context: Any?) {
@@ -52,6 +54,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     }
     
     func startStandardUpdates(){
+        self.uploadedImages.removeAllObjects()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             locationManager.startUpdatingLocation()
             acquiring = true
@@ -98,8 +101,18 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
             NSLog("Distance: \(lastLocation!.distance(from: userLocation))")
         }
         lastLocation = userLocation
-        Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImage in
-            NSLog("PIC: \(flickrImage.imageUrl)")
+        Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
+            var loaded = false
+            for flickrImage in flickrImages {
+                if (!self.uploadedImages.contains(flickrImage.id)){
+                    self.uploadedImages.add(flickrImage.id)
+                    loaded = true
+                    break
+                }
+            }
+            if (!loaded && flickrImages.count > 0){
+                self.uploadedImages.removeAllObjects()
+            }
         })
     }
     
