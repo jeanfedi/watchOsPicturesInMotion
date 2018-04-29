@@ -15,6 +15,8 @@ extension WKInterfaceGroup {
             let request = NSURLRequest(url: url as URL)
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
+            session.configuration.waitsForConnectivity = true
+            session.configuration.shouldUseExtendedBackgroundIdleMode = true
             let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
                 if let imageData = data as Data? {
                     DispatchQueue.main.async {
