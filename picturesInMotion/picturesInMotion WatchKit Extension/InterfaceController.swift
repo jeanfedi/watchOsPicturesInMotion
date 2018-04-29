@@ -29,10 +29,11 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         if (!WCSession.isSupported()){
             setDisconnectedButton()
         }
-        locationManager.delegate = self;
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = ConfigKeys.notificationMeters! // In meters.
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
 
     }
     
@@ -81,6 +82,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         setStartButton()
         locationManager.stopUpdatingLocation()
         maximumLengthTimer?.invalidate()
+        NSLog("CELL NUMBER: \(picturesTable.numberOfRows)")
     }
     
     // MARK: locationManagerDelegate
@@ -109,6 +111,8 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         
         var addNewImage = true
         if (lastLocation != nil){
+            NSLog("DISTANCE \(lastLocation!.distance(from: userLocation))")
+
             if (lastLocation!.distance(from: userLocation) == 0){
                 addNewImage = false;
             }
@@ -121,18 +125,19 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
                     self.canUpdateList = true
                 })
                 Networking().requestNewPicture(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, completionHandler: { flickrImages in
-                var loaded = false
-                    for flickrImage in flickrImages {
-                        if (!self.uploadedImages.contains(flickrImage.id)){
-                            self.addNewRecord(flickrImage: flickrImage)
-                            loaded = true
-                            break
+                        var loaded = false
+                        NSLog("NEW DATA")
+                        for flickrImage in flickrImages {
+                            if (!self.uploadedImages.contains(flickrImage.id)){
+                                self.addNewRecord(flickrImage: flickrImage)
+                                loaded = true
+                                break
+                            }
                         }
-                    }
-                    if (!loaded && flickrImages.count > 0){
-                        self.uploadedImages.removeAllObjects()
-                        self.addNewRecord(flickrImage: flickrImages[0])
-                    }
+                        if (!loaded && flickrImages.count > 0){
+                            self.uploadedImages.removeAllObjects()
+                            self.addNewRecord(flickrImage: flickrImages[0])
+                        }
                 })
             }
         }

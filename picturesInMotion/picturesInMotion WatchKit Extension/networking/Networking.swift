@@ -18,6 +18,8 @@ struct Networking {
         let url = URL(string:
             "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(ConfigKeys.flickrApiKey!)&privacy_filter=1&content_type=4&has_geo=1&geo_context=2&lat=\(latitude)&lon=\(longitude)&radius=\(radius)&per_page=100&format=json&nojsoncallback=1")!
         let urlSession = URLSession.shared
+        urlSession.configuration.waitsForConnectivity = true
+        urlSession.configuration.shouldUseExtendedBackgroundIdleMode = true
         let getRequest = URLRequest(url: url)
         let task = urlSession.dataTask(with: getRequest as URLRequest, completionHandler: { data, response, error in
             guard error == nil else {
